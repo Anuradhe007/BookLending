@@ -28,4 +28,20 @@ public class DBConnection {
             he.printStackTrace();
         }
     }
+    public void saveBook2Lending(Book2 book1Object) {
+
+        try {
+            factory = new Configuration()
+                    .configure("hibernate.cfg.xml")
+                    .addAnnotatedClass(Book2.class)
+                    .buildSessionFactory();
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+            System.out.println("saving the Data object............................");
+            session.save(book1Object);
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+    }
 }
